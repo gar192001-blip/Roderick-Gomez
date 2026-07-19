@@ -141,5 +141,31 @@ los siguientes puntos estaremos integrando todos los metodos dados en clases apl
 
 
 ## Cierre del programa
-- Funcion: Finaliza la ejecución del sistema y cierra la sesión del usuario.
+- Funcion: finaliza la ejecución del sistema y cierra la sesión del usuario.
+<img width="514" height="108" alt="Captura de pantalla 2026-07-19 132407" src="https://github.com/user-attachments/assets/a5ba7103-d22f-47a9-a451-eaf805cf7dd1" />
 
+# Diagnostico Final del paciente
+## En base a los datos dados y obtenidos por el sistema
+
+
+
+Paciente: Roderick Gomez
+
+Edad: 7 años
+
+Diagnóstico inicial: Genuvalgo (afectación en la rodilla).
+
+## Resultados obtenidos durante la evaluación
+### Se registró correctamente el paciente.
+- El análisis mediante Punto Fijo, Newton-Raphson y Secante mostró una recuperación estable y una evolución favorable del movimiento.
+- La medición terapéutica indicó una recuperación funcional del 92%, con un error absoluto de 8 unidades, un error relativo del 8% y una incertidumbre de ±4, lo que refleja una respuesta positiva al tratamiento.
+- La programación automática recomendó un horario óptimo y una alternativa adecuada para las sesiones terapéuticas.
+- El historial de progreso mostró una disminución de la fatiga durante la fase central del tratamiento y una evolución consistente con el peso del paciente.
+- El error de formulación del 3% evidenció que la evolución clínica observada es muy cercana a la esperada para un niño de 7 años.
+- El reporte operativo confirmó que la clínica cuenta con una distribución eficiente de recursos, asignando 2 horas al terapeuta físico, 3 horas al terapeuta motor y 1 hora al especialista en lenguaje, manteniendo un error operativo muy bajo (0.0583%).
+
+## Diagnóstico Final
+
+- Paciente pediátrico con genuvalgo en proceso de recuperación funcional favorable.
+
+Los resultados obtenidos indican que el paciente presenta una evolución positiva, con una recuperación cercana al 92% de la capacidad funcional esperada, un 3% de diferencia respecto al modelo teórico para su edad y una respuesta satisfactoria al tratamiento. Se observa mejoría en la estabilidad, fuerza y movilidad de los miembros inferiores, por lo que se recomienda continuar con el plan de terapia fisica y ocupacional para fortalecer la musculatura, corregir progresivamente la alineación de las rodillas y consolidar una marcha completamente funcional.
