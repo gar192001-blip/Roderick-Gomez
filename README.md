@@ -12,10 +12,11 @@
 # Trabajo Final
 ## Introducción
 El codigo se basa en un software de una clinica de Terapia ocupacional Infantil,
-la idea fue integrada gracias a la elavoracion de una clinica ficticia elaborada 
-por mi pareja, donde se evalua a sus pacientes y estar integradas partes como: registro,
-evaluacion, calculo de progreso, pragramaccion de secciones de terapia, consulta de 
+la idea fue integrada gracias a la elaboracion de una clinica ficticia elaborada 
+por mi pareja para un proyecto de terapia ocupacional en UDELAS, es un trabajo en conjunto donde se utilizara como complementacion para ambos, donde se evalua a sus pacientes y estar integradas partes como: registro,
+evaluacion, calculo de progreso, programaccion de secciones de terapia, consulta de 
 histortial y generacion de reporte operativo/financiero.
+<img width="845" height="562" alt="image" src="https://github.com/user-attachments/assets/04d9b992-9601-4586-8915-37c794cc474f" />
 
 
 ## Codigo e imagen de copilacion 
@@ -153,7 +154,7 @@ Paciente: Roderick Gomez
 
 Edad: 7 años
 
-Diagnóstico inicial: Genuvalgo (afectación en la rodilla).
+Diagnóstico inicial: Genu valgo (afectación en la rodilla).
 
 ## Resultados obtenidos durante la evaluación
 ### Se registró correctamente el paciente.
