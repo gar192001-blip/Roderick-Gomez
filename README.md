@@ -22,7 +22,7 @@ histortial y generacion de reporte operativo/financiero.
 ## Los puntos en enfatizar son: 
 - Funcion de la seccion.
 - Metodos Aplicados y que funcion cumplio.
-- Que serultado a mostrar.
+- Resultados a mostrar.
 
 Punto importante!!
 Al final del trabajo se dara la evolucion del progreso ficticio el paciente en la clinica, dada por el terapeuta
