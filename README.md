@@ -89,7 +89,7 @@ los siguientes puntos estaremos integrando todos los metodos dados en clases apl
 ## Case 4 
 - Funcion: ayudar al terapeuta a seleccionar el mejor horario para programar una sesión de terapia
 - Metodos y funcion:
-- Método de biseccion: Buscar el horario óptimo para la sesión terapéutica.
+- Método de biseccion: ayuda a buscar el horario óptimo para la sesión terapéutica.
   - Resultado: es el horario mas adecuado para programar la terapia.
 
 - Método de Falsa Posicion: Encontrar una alternativa de horario.
@@ -101,14 +101,14 @@ los siguientes puntos estaremos integrando todos los metodos dados en clases apl
 
 ## Case 5 
 
-- Funcion:
+- Funcion: nos ayuda a ver el comportamiento de rexuperacion del paciente.
 - Metodos y funcion:
 - Método grafico: representar gráficamente la evolución del paciente. 
 - Permite ver mayor fatiga en durante el tratamiento, menor fatiga entre el tratamiento, momento favorable de recuperacion.
   
 <img width="619" height="426" alt="image" src="https://github.com/user-attachments/assets/f2408a81-b93e-41e2-bba7-437751051d31" />
 
-- Funcion:
+- Funcion: nos ayuda a estimar que tan cerca es la evolucion real con respecto al comportamiento teorico esperado para un niño de su edad.
 - Metodos y funcion:
 - Error de formulación: comparar el comportamiento esperado según la edad con el progreso real del paciente.
   - Resultado: permite ver que la operacion coincide prácticamente con la evolución clínica observada, ya que solo existe una diferencia del 3%. 
@@ -118,7 +118,7 @@ los siguientes puntos estaremos integrando todos los metodos dados en clases apl
 
 
 ## Case 6
-- Funcion:
+- Funcion: evalaa la precisión de los procesos de la clinica y optimiza la distribución de horas entre los especialistas.
 - Metodos y funcion:
 - Error propagado: calcular el error acumulado de los procesos administrativos.
   - Resultado: permite ver que la clínica posee un margen de error muy bajo en sus operaciones.
