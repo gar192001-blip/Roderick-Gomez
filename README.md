@@ -18,7 +18,6 @@ evaluacion, calculo de progreso, pragramaccion de secciones de terapia, consulta
 histortial y generacion de reporte operativo/financiero.
 ### Codigo e imagen de copilacion 
 
-
 #include <iostream>
 #include <cstdlib>
 #include <cmath>    // Necesaria para fabs(), pow(), round() y sqrt()
