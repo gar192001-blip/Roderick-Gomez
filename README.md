@@ -135,8 +135,22 @@ los siguientes puntos estaremos integrando todos los metodos dados en clases apl
 
 
 ## Case 7
-- Funcion: presentala informacion general del proyecto y los 14 metodos implemntados.
- 
+- Funcion: presentala informacion general del proyecto y los 14 metodos implemntados:
+
+1. Método de Punto Fijo
+2. Método de Newton-Raphson
+3. Método de la Secante
+4. Error Absoluto
+5. Error Relativo
+6. Error Porcentual
+7. Incertidumbre
+8. Método de Bisección
+9. Método de Falsa Posición
+10. Método Gráfico
+11. Error de Formulación
+12. Error Propagado
+13. Eliminación Gaussiana
+14. Método de Gauss-Jordan
 
 <img width="570" height="331" alt="image" src="https://github.com/user-attachments/assets/0f52c12d-09ee-4115-9f11-673187b96fa6" />
 
