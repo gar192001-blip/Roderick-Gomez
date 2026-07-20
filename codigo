@@ -1,0 +1,438 @@
+#include <iostream>
+#include <cstdlib>
+#include <cmath>    // Es necesaria para usar fabs(), pow(), round() y sqrt()
+#include <string>   // Ayuda a tener un mejor manejo de la cadenas de texto
+// fabs: para hayar el valor absoluto
+//puw se usa para potencia
+//round: permite redondear
+//sqrt: ayuda a calcular la raiz cuadrada
+using namespace std;
+
+// Eatas son las variables globales, para enlazar el registro con el reporte final
+string nombrePaciente = "Ninguno (Sin registrar)";
+string diagPaciente = "No asignado";
+int edadPaciente = 0; //Se declara las variables de numero entero
+float pesoPaciente = 0.0; //Se declara las variables de numero flotante
+float estaturaPaciente = 0.0; 
+bool pacienteRegistrado = false; //Guarda los nuemro reales con decimales
+
+// Función de apoyo matematico para los métodos de raices e historial
+double f(double x) {
+    return x * x - 4; // Esta ecuación ayuda para simular las aproximaciones físicas
+}
+
+int main() {
+    int opcion;
+
+    do {
+        system("cls"); // permite limpiar la pantalla de la consola
+
+        cout << "**----------------------------------------------**" << endl;
+        cout << " CLINICA DE TERAPIA OCUPACIONAL INFANTIL" << endl;
+        cout << "**----------------------------------------------**" << endl;
+        cout << "1. Registrar paciente" << endl;
+        cout << "2. Evaluar progreso del paciente" << endl;
+        cout << "3. Calcular medicion terapeutica" << endl;
+        cout << "4. Programar sesion de terapia" << endl;
+        cout << "5. Consultar historial de progreso" << endl;
+        cout << "6. Generar reporte operativo y financiero" << endl;
+        cout << "7. Acerca del sistema" << endl;
+        cout << "0. Salir" << endl;
+        cout << "**----------------------------------------------**" << endl;
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        system("cls");
+
+        switch(opcion) {
+
+case 1: {
+        cout << "**-- REGISTRO DE PACIENTE --**" << endl;
+        cin.ignore(); // Ignora la entrada de datos hasta encontrar un salto de línea
+
+        cout << "Nombre: ";
+        getline(cin, nombrePaciente);
+        cout << "Edad: ";
+        cin >> edadPaciente;
+        cout << "Peso (kg): ";
+        cin >> pesoPaciente;
+        cout << "Estatura (m): ";
+        cin >> estaturaPaciente;
+               
+        cin.ignore();
+        cout << "Diagnostico: ";
+        getline(cin, diagPaciente);
+  
+        pacienteRegistrado = true;
+        cout << "\nPaciente registrado correctamente.\n";
+break;// pausa o detiene el case
+}
+
+case 2: {
+        double x0, x1, x2;
+        double tol = 0.0001;
+
+        cout << "**-- EVALUAR PROGRESO DEL PACIENTE --**" << endl;
+        cout << "Ingrese el valor base del nivel de movimiento : ";
+        cin >> x0;
+        // -----------------------------------------------------
+        // Se aplica Punto fijo
+        // Funcion: me ayuda a  ajustar iterativamente los parametros del 
+        // indicador hasta lograr estabilidad clinica
+        // -----------------------------------------------------
+        cout << "\n[Analisis a] Evaluacion de Estabilidad (Punto Fijo):" << endl;
+           for(int i = 1; i <= 5; i++) {
+           	//i++ es el contador
+               x1 = (x0 + 2 / x0) / 2;
+               cout << " -> Evaluacion dinamica " << i << " = " << x1 << endl;
+               if(fabs(x1 - x0) < tol) break;
+               x0 = x1;// cambio de datos entre variables
+            }
+
+        // -----------------------------------------------------
+        // Se aplica el metodo de NEWTON-RAPHSON
+        // Funcion: ayuda a calcular de forma acelerada la proyeccion 
+        // optima del progreso estimado del paciente
+        // -----------------------------------------------------
+        cout << "\n[Analisis b] Locomocion (Newton-Raphson):" << endl;
+          x0 = 1.5; // Reinicio para consistencia
+          for(int i = 1; i <= 5; i++) {
+                x1 = x0 - (pow(x0, 2) - 2) / (2 * x0);
+                cout << " -> Tendencia estimada de la evolucion motora  " << i << " =" << x1 << endl;
+                if(fabs(x1 - x0) < tol) break;
+                x0 = x1;
+            }
+
+        // -----------------------------------------------------
+        // Se aplica el metodo de la secante METODO DE LA SECANTE
+        // Funcion: Acelera la velocidad de recuperacion
+        // -----------------------------------------------------
+        cout << "\n[Analisis c] Cambio de la flexibilidad (Metodo de la Secante):" << endl;
+        x0 = 1.0; 
+        x1 = 2.0;
+           for(int i = 1; i <= 5; i++) {
+                if(fabs(f(x1) - f(x0)) < 0.000001) break;
+                x2 = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0));
+                cout << " -> Comportamiento lineal " << i << " = " << x2 << endl;
+                if(fabs(x2 - x1) < tol) break;
+                x0 = x1;
+                x1 = x2;
+            }
+break;
+}
+
+case 3: {
+        double real, medido;
+        double ea, er;
+
+        cout << "**-- CALCULAR MEDICION TERAPEUTICA --**" << endl;
+        cout << "Valor real esperado por protocolo: ";
+        cin >> real;
+        cout << "Valor medido en dinamometro: ";
+        cin >> medido;
+
+        // -----------------------------------------------------
+        // Esta seccion mide la fuersa del paciente
+        // Se aplica el Erro absoluto y el relativo
+        // Funcion: Cuantificar la desviacion lineal y la relacion
+        // de precision respecto al valor real esperado
+	    // -----------------------------------------------------
+        ea = fabs(real - medido);
+        er = (ea / real);
+
+        cout << "\n--- Resultados de Calibracion ---" << endl;
+        cout << "Desviacion Fisica Absoluta (Ea): " << ea << endl;
+        cout << "Proporcion de Variabilidad Relativa (Er): " << er << endl;
+
+        // -----------------------------------------------------
+        // Aqui se aplica el Error porsentual
+        // Funcion: Expresar el error relativo en formato de base
+        // 100 para facilitar la lectura de mi terapeuta
+        // -----------------------------------------------------
+        double ePorcentual = er * 100;
+        cout << "Margen de Variabilidad Porcentual: " << ePorcentual << "%" << endl;
+
+        // -----------------------------------------------------
+        // Aplicamos Incentidunbre
+        // Funcion: Establecer el origen de tolerancia fisica
+        // de confianza del instrumento medico evaluado
+		// -----------------------------------------------------
+        double incertidumbre = ea / 2.0;
+        cout << "Margen de Incertidumbre Clinica (+/-): " << incertidumbre << endl;
+    break;
+}
+
+case 4:
+{
+    double a, b, c;
+    double tol = 0.000001;      // Eeste es el rror permitido
+    int iter = 0;
+    int max_iter = 100;
+    int decimales;
+
+    cout << "**------- AGENDA INTELIGENTE -------**\n";
+
+    cout << "Ingrese la hora inicial disponible: ";
+    cin >> a;
+    cout << "Ingrese la hora final disponible: ";
+    cin >> b;
+
+    // Verifica que el intervalo sea válido de forma lógica
+    if (a >= b)
+    {
+        cout << "\nLa hora inicial debe ser menor que la hora final.\n";
+        break;
+    }
+
+    // control clinico previo: Si la hora exacta inicial ya es perfecta ( es la raíz)
+    if (fabs(f(a)) < tol) 
+    {
+        // Ajusta levemente el extremo para obligar a los codigos a rpetir en un entorno aceptado   
+        a += 0.1; 
+    }
+    // Si la hora exacta final ya es perfecta (raíz)
+    if (fabs(f(b)) < tol) 
+    {
+        b -= 0.1;
+    }
+
+    // se hace un cambion de signo real en sus extremos para trabajar
+    if (f(a) * f(b) > 0)
+    {
+        cout << "\nNo fue posible analizar el intervalo ingresado." << endl;
+        cout << "Intente nuevamente con un rango de horas diferente (ej: 1 a 3)." << endl;
+        break;
+    }
+
+    // -----------------------------------------------------
+    // Se integra el metodo de biseccion
+    // Funcion: Localizar un espacio optimo dividiendo de forma
+    // simetrica las horas libres en la agenda de la clinica
+    // -----------------------------------------------------
+    cout << "\nAnalizando disponibilidad de horarios..." << endl;
+
+    double tpA = a;
+    double tpB = b;
+    iter = 0;
+
+    while (fabs(tpB - tpA) > tol && iter < max_iter)
+    {
+        c = (tpA + tpB) / 2.0;
+        if (fabs(f(c)) < tol)
+            break;
+        if (f(tpA) * f(c) < 0)
+            tpB = c;
+        else
+            tpA = c;
+        iter++;
+    }
+
+    double horarioPrincipal = c;
+
+    // -----------------------------------------------------
+    // se implementa el metodo de la falfa posicion
+    // Funcion: Encontrar el hueco en la agenda con mayor velocidad, 
+    // ponderando la disponibilidad por peso de importancia
+    // -----------------------------------------------------
+    cout << "Buscando una alternativa de horario..." << endl;
+
+    tpA = a;
+    tpB = b;
+    iter = 0;
+
+    while (iter < max_iter)
+    {
+        if (fabs(f(tpB) - f(tpA)) < 1e-10) break; // Evita división por cero
+        c = (tpA * f(tpB) - tpB * f(tpA)) / (f(tpB) - f(tpA));
+        if (fabs(f(c)) < tol)
+            break;
+        if (f(tpA) * f(c) < 0)
+            tpB = c;
+        else
+            tpA = c;
+        iter++;
+    }
+
+    double horarioAlternativo = c;
+
+    // -----------------------------------------------------
+    // Aqui se incluye cifras significativa / decimales
+    // Funcion: Ajustar esteticamente el bloque horario final
+    // para que muestre solo los digitos legibles del reporte
+    // -----------------------------------------------------
+    cout << "\nCantidad de decimales para mostrar el horario: ";
+    cin >> decimales;
+
+    cout.setf(ios::fixed);
+    cout.precision(decimales);
+
+    cout << "\n**------------------------------------**" << endl;
+    cout << "        HORARIOS RECOMENDADOS" << endl;
+    cout << "**--------------------------------------**" << endl;
+    cout << "Horario recomendado (Biseccion)       : " << horarioPrincipal << " hrs" << endl;
+    cout << "Horario alternativo (Falsa Posicion)  : " << horarioAlternativo << " hrs" << endl;
+    cout << "**--------------------------------------**" << endl;
+
+    cout.unsetf(ios::fixed);
+    break;
+}
+
+case 5: {
+    int subOpcion;
+    cout << "**-- HISTORIAL E INTERPOLACION DE EVOLUCION --**" << endl;
+    
+    // Verificación de seguridad clínica
+    if (!pacienteRegistrado) {
+        cout << "\n[ALERTA] No hay ningun paciente registrado en el sistema." << endl;
+        cout << "Por favor, use la Opcion 1 primero para registrar los datos." << endl;
+        break;
+    }
+
+    cout << "Paciente en evaluacion: " << nombrePaciente << endl;
+    cout << "1. Ver comportamiento de recuperacion estimado (Metodo Grafico)\n";
+    cout << "2. Evaluar fiabilidad del modelo teorico (Error de Formulacion)\n";
+    cout << "Seleccione: ";
+    cin >> subOpcion;
+
+    if(subOpcion == 1) {
+        // ======================================================
+        // se aplica el metodo grafico (Integrado al paciente)
+        // Funcion: Mapear una tabla de rendimiento usando el peso 
+        // real del paciente como factor de resistencia fisica
+        // ======================================================
+        cout << "\n--- TABLA DE TENDENCIAS PARA: " << nombrePaciente << " ---" << endl;
+        cout << "Resistencia Base (Peso): " << pesoPaciente << " kg" << endl << endl;
+        cout << "Semana (x)\tFatiga Estimada f(x)" << endl;
+        cout << "------------------------------------------" << endl;
+        
+        // El cálculo ahora integra directamente el peso del paciente
+        for(double x = -3; x <= 3; x += 1.5) {
+            // Evaluamos la ecuación base sumada al impacto proporcional del peso
+            double f_ejecucion = (x * x - 4) + (pesoPaciente * 0.1); 
+            cout << x << "\t\t" << f_ejecucion << endl;
+        }
+        cout << "------------------------------------------" << endl;
+        cout << "Nota: Los valores de fatiga f(x) cambian segun el peso del paciente." << endl;
+    } 
+    else if(subOpcion == 2) {
+        // ======================================================
+        // Se usa el error de formulacion (Integrado al paciente)
+        // Funcion: Comparar el exito estimado segun la edad del
+        // niño contra la respuesta motriz real medida
+        // ======================================================
+        double modeloTeorico, realidadMedida;
+        
+        // El sistema calcula automáticamente un modelo ideal basado en la edad del niño
+        modeloTeorico = 50.0 + (edadPaciente * 5.0); 
+        if(modeloTeorico > 100.0) modeloTeorico = 95.0; // Límite de escala
+
+        cout << "\n--- CONTROL DE CALIDAD DEL MODELO ---" << endl;
+        cout << "Edad del paciente: " << edadPaciente << " anos" << endl;
+        cout << "Porcentaje de exito teorico para su edad: " << modeloTeorico << " %" << endl;
+        cout << "Ingrese el porcentaje de exito REAL medido en consulta: ";
+        cin >> realidadMedida;
+        
+        // Cálculo del error de formulación puro
+        double errorFormulacion = fabs(modeloTeorico - realidadMedida);
+        
+        cout << "\nNIvel de diferencia: " << errorFormulacion << " %" << endl;
+    }
+    break;
+}
+
+case 6: {
+        cout << "**-- REPORTE OPERATIVO, COSTOS Y RECURSOS --**" << endl;
+
+        // -----------------------------------------------------
+        // Se aplica Error propagado 
+        // Funcion: Determinar el error acumulado total en cuentas 
+        // debido a pequeñas variaciones instrumentales simultaneas
+        // -----------------------------------------------------
+        double er1 = 0.05, er2 = 0.03; 
+        double propagado = sqrt(pow(er1, 2) + pow(er2, 2));
+        cout << "[Control Interno] Tolerancia pobre Propagada: " << propagado << " %" << endl << endl;
+
+        // matrix 3x3 para ayudar a administrar los datos:
+        double A[3][4] = {
+	    {2, 1, -1, 8},
+        {-3, -1, 2, -11},
+        {-2, 1, 2, -3}
+        };
+
+        // -----------------------------------------------------
+        // Se aplica Eliminacion GAUSSIANA
+        // Funcion: Resolver simultaneamente la cantidad de horas
+        // optimas asignadas a tres especialistas de la clinica
+        // -----------------------------------------------------
+        cout << "--- Resolviendo Distribucion Operativa (Eliminacion Gaussiana) ---" << endl;
+            for(int i = 0; i < 3; i++) {
+                 for(int j = i + 1; j < 3; j++) {
+                     double factor = A[j][i] / A[i][i];
+                     for(int k = i; k <= 3; k++) {
+                     A[j][k] -= factor * A[i][k];
+                     }
+                  }
+             }
+        cout << " -> Matriz reducida a forma triangular superior con exito." << endl;
+
+        // -----------------------------------------------------
+        // Se aplica el metodo de GAUSS-JORDAN
+        // Funcion: Diagonalizar por completo la matriz para extraer
+        // el balance presupuestario limpio por terapeuta de forma directa
+        // -----------------------------------------------------
+        cout << "\n--- Optimizacion Directa de Costos (Gauss-Jordan) ---" << endl;
+        for(int i = 0; i < 3; i++) {
+               double t = A [i][i];
+                for(int k = i; k <= 3; k++) A [i][k] /= t; 
+                for(int j = 0; j < 3; j++) {
+                   if(i != j) {
+                   double factor = A [j][i];
+                   for(int k = i; k <= 3; k++) {
+                   A [j][k] -= factor * A [i][k];
+                    }
+                  }
+               }
+            }
+                
+        cout << " -> Horas Optimas Terapeuta Fisico A: " <<fabs(A[0][3]) << " hrs/sem." << endl;
+        cout << " -> Horas Optimas Terapeuta Motor B:  " <<fabs(A[1][3]) << " hrs/sem." << endl;
+        cout << " -> Horas Optimas Lenguaje Infantil C: " <<fabs(A[2][3]) << " hrs/sem." << endl;
+    break;
+}
+            
+case 7: {
+    cout << "**----------------------------------------------**" << endl;
+    cout << "              ACERCA DEL SISTEMA              " << endl;
+    cout << "**----------------------------------------------**" << endl;
+    cout << "Sistema de Inteligencia Clinica Integrada" << endl;
+    cout << "Clinica de Terapia Ocupacional Infantil" << endl;
+    cout << "Universidad de Panama" << endl;
+    cout << "Estudiante: Roderick Gomez" << endl;
+    cout << "Asignatura: Metodos Numericos" << endl;
+    cout << "**----------------------------------------------**" << endl;
+    cout << "EL proyecto cuenta con 14 integraciones de metodos numericos:\n";
+    cout << "con las 14 integraciones de metodos numericos se utilizaron\n" ;
+    cout << "para la toma de decisiones organizacionales y funciones de\n"; 
+	cout << "calculos dentros del programa.\n"; 
+    cout << "**----------------------------------------------**" << endl;
+break;
+}
+
+case 0:
+cout << "Cerrando sesion y guardando base de datos." << endl;
+break;
+
+        default:
+            cout << "Opcion no valida." << endl;
+    }
+
+    if(opcion != 0){
+        cout << "\n\nPresione una tecla para regresar al menu principal...";
+        cin.ignore(); // Borra el caracter que haya quedado
+        cin.get(); // Pausa el programa
+    }
+
+    } while(opcion != 0);
+
+    return 0;
+}

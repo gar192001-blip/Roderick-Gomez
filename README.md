@@ -12,366 +12,175 @@
 # Trabajo Final
 ## Introducción
 El codigo se basa en un software de una clinica de Terapia ocupacional Infantil,
-la idea fue integrada gracias a la elavoracion de una clinica ficticia elaborada 
-por mi pareja, donde se evalua a sus pacientes y estar integradas partes como: registro,
-evaluacion, calculo de progreso, pragramaccion de secciones de terapia, consulta de 
+la idea fue integrada gracias a la elaboracion de una clinica ficticia elaborada 
+por mi pareja para un proyecto de terapia ocupacional en UDELAS, es un trabajo en conjunto donde se utilizara como complementacion para ambos, donde se evalua a sus pacientes y estar integradas partes como: registro,
+evaluacion, calculo de progreso, programaccion de secciones de terapia, consulta de 
 histortial y generacion de reporte operativo/financiero.
-### Codigo e imagen de copilacion 
+<img width="845" height="562" alt="image" src="https://github.com/user-attachments/assets/04d9b992-9601-4586-8915-37c794cc474f" />
 
 
-#include <iostream>
-#include <cstdlib>
-#include <cmath>    // Necesaria para fabs(), pow(), round() y sqrt()
-#include <string>   // Manejo robusto de cadenas de texto
+## Codigo e imagen de copilacion 
+## Los puntos en enfatizar son: 
+- Funcion de la seccion.
+- Metodos Aplicados y que funcion cumplio.
+- Resultados a mostrar.
 
-using namespace std;
+Punto importante!!
+Al final del trabajo se dara la evolucion del progreso ficticio el paciente en la clinica, dada por el terapeuta
+encargado de los resultados del sistema.
 
-// VARIABLES GLOBALES (Para enlazar el registro con el reporte final)
-string nombrePaciente = "Ninguno (Sin registrar)";
-string diagPaciente = "No asignado";
-int edadPaciente = 0;
-float pesoPaciente = 0.0;
-float estaturaPaciente = 0.0;
-bool pacienteRegistrado = false;
+## Menu
+El menu es el portal inicial, se encuentra las 7 secciones en este, donde el paso mas importante es registrar al cliente, en
+los siguientes puntos estaremos integrando todos los metodos dados en clases aplicandolo a las necesidads de la clinica ficticia, exectuando los punto de cierre (7. Datos del software, y 0. Salida).
+-  Evaluar progreso del paciente
+-  Calcular medicion terapeutica
+-  Programar sesion de terapia
+-  Consultar historial de progreso
+-  Generar reporte operativo y financiero
 
-// Función de soporte matemático para los métodos de raíces e historial
-double f(double x) {
-    return x * x - 4; // Ecuación modelo para simular aproximaciones físicas
-}
+<img width="519" height="273" alt="image" src="https://github.com/user-attachments/assets/83676dc7-93d3-4699-b0c5-9737f2c28bf7" />
 
-int main() {
-    int opcion;
+## Case 1 
+- Funcion: permite registrar la información clínica inicial del paciente que será utilizada por el resto del sistema.
+- Metodos y funcion: no tiene.
+- Resultado: el paciente queda correctamente registrado y que todos los módulos posteriores utilizan sus datos reales.
 
-    do {
-        system("cls"); // Limpia la pantalla de la consola
+<img width="513" height="234" alt="image" src="https://github.com/user-attachments/assets/4f1e82cd-30a9-4fd6-bb9a-0b247e2ed529" />
 
-        cout << "**----------------------------------------------**" << endl;
-        cout << " CLINICA DE TERAPIA OCUPACIONAL INFANTIL" << endl;
-        cout << "**----------------------------------------------**" << endl;
-        cout << "1. Registrar paciente" << endl;
-        cout << "2. Evaluar progreso del paciente" << endl;
-        cout << "3. Calcular medicion terapeutica" << endl;
-        cout << "4. Programar sesion de terapia" << endl;
-        cout << "5. Consultar historial de progreso" << endl;
-        cout << "6. Generar reporte operativo y financiero" << endl;
-        cout << "7. Acerca del sistema" << endl;
-        cout << "0. Salir" << endl;
-        cout << "**----------------------------------------------**" << endl;
-        cout << "Seleccione una opcion: ";
-        cin >> opcion;
 
-        system("cls");
+## Case 2
+- Funcion: Ayuda a evaluar la estabilidad, la locomoción y la flexibilidad. Esto es gracias a un valor base obtenido, el cual se compara del 1 al 5 donde el valor más alto determina una mejor evolución en el paciente.
+- Metodos y funcion:
+  - Punto Fijo: evalua la estabilidad del movimiento del paciente mediante aproximaciones sucesivas.
+  - Resultado: Con un valor inicial de 1.4, el método cambia rápidamente hacia: 1.41421
+    
+  - Newton-Raphson: calcula de manera rápida la tendencia de recuperación motora.
+  - Resultado: el método cambia aproximadamente a: 1.41421
+    
+  - la Secante: calcula la evolución de la flexibilidad sin utilizar derivadas.
+  - Resultado: cambia aproximadamente a: 2
 
-        switch(opcion) {
+- Entre los 3 permiten observar:
+  - La estabilidad del movimiento.
+  - Una estimación precisa del progreso.
+  - La adaptación del paciente a la terapia.
+ 
 
-            case 1: {
-                cout << "**-- REGISTRO DE PACIENTE --**" << endl;
-                cin.ignore();
+<img width="582" height="343" alt="image" src="https://github.com/user-attachments/assets/9d52dde1-e967-4447-b3b5-bc2db1dc8fcc" />
 
-                cout << "Nombre: ";
-                getline(cin, nombrePaciente);
 
-                cout << "Edad: ";
-                cin >> edadPaciente;
+## Case 3 
+- Funcion: con esta seccion verifico la precisión de una medición realizada durante la terapia.
+- Metodos y funcion:
+- Error absoluto: determina cuántas unidades existe de diferencia entre lo esperado y lo obtenido
+  - Resultado: existe una diferencia pequeña entre el objetivo clínico y la medición real.
+    
+- Error relativo: relaciona el error respecto al valor esperado.
+  - Resultado: el paciente presenta solamente un 8% de diferencia respecto al objetivo terapéutico.
 
-                cout << "Peso (kg): ";
-                cin >> pesoPaciente;
+- Error porcentual: expresar el error en porcentaje para facilitar la interpretación clínica.
+  - Resultado: el paciente ha alcanzado aproximadamente un 92% del objetivo terapéutico.
 
-                cout << "Estatura (m): ";
-                cin >> estaturaPaciente;
+- Incertidumbre: determinar el margen de confianza de la medición.
+  - Resultado: las mediciones poseen una variabilidad pequeña y aceptable.
 
-                cin.ignore();
-                cout << "Diagnostico: ";
-                getline(cin, diagPaciente);
+<img width="504" height="249" alt="image" src="https://github.com/user-attachments/assets/2f84d2c5-6d75-43e2-a162-b78bc2a8e489" />
 
-                pacienteRegistrado = true;
-                cout << "\nPaciente registrado correctamente.\n";
-                break;
-            }
 
-            case 2: {
-                double x0, x1, x2;
-                double tol = 0.0001;
+## Case 4 
+- Funcion: ayudar al terapeuta a seleccionar el mejor horario para programar una sesión de terapia
+- Metodos y funcion:
+- Método de biseccion: ayuda a buscar el horario óptimo para la sesión terapéutica.
+  - Resultado: es el horario mas adecuado para programar la terapia.
 
-                cout << "**-- EVALUAR PROGRESO DEL PACIENTE --**" << endl;
-                cout << "Ingrese el valor base del nivel de movimiento (ej. 1.5): ";
-                cin >> x0;
+- Método de Falsa Posicion: Encontrar una alternativa de horario.
+  - Resultado: Una segunda opción válida para la programación clínica.
 
-                // ======================================================
-                // Se aplica PUNTO FIJO
-                // Funcion: Ajustar iterativamente los parametros del 
-                // indicador hasta lograr estabilidad clinica.
-                // ======================================================
-                cout << "\n[Analisis A] Evaluacion de Estabilidad (Punto Fijo):" << endl;
-                for(int i = 1; i <= 5; i++) {
-                    x1 = (x0 + 2 / x0) / 2;
-                    cout << " -> Evaluacion dinamica " << i << " = " << x1 << endl;
-                    if(fabs(x1 - x0) < tol) break;
-                    x0 = x1;
-                }
 
-                // ======================================================
-                // Se aplica el metodo de NEWTON-RAPHSON
-                // Funcion: Calcular de forma acelerada la proyeccion 
-                // optima del progreso estimado del paciente.
-                // ======================================================
-                cout << "\n[Analisis B] Locomocion (Newton-Raphson):" << endl;
-                x0 = 1.5; // Reinicio para consistencia
-                for(int i = 1; i <= 5; i++) {
-                    x1 = x0 - (pow(x0, 2) - 2) / (2 * x0);
-                    cout << " -> Tendencia estimada de la evolucion motora  " << i << " = " << x1 << endl;
-                    if(fabs(x1 - x0) < tol) break;
-                    x0 = x1;
-                }
+<img width="494" height="352" alt="image" src="https://github.com/user-attachments/assets/4732ae89-1588-40d1-8543-f53e98fb26d4" />
 
-                // ======================================================
-                // Se aplica el metodo de la secante METODO DE LA SECANTE
-                // Funcion: Aproximar la velocidad de recuperacion sin
-                // requerir de funciones derivadas complejas.
-                // ======================================================
-                cout << "\n[Analisis C] Cambio de la flexibilidad (Metodo de la Secante):" << endl;
-                x0 = 1.0; 
-                x1 = 2.0;
-                for(int i = 1; i <= 5; i++) {
-                    if(fabs(f(x1) - f(x0)) < 0.000001) break;
-                    x2 = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0));
-                    cout << " -> Comportamiento lineal " << i << " = " << x2 << endl;
-                    if(fabs(x2 - x1) < tol) break;
-                    x0 = x1;
-                    x1 = x2;
-                }
-                break;
-            }
 
-            case 3: {
-                double real, medido;
-                double ea, er;
+## Case 5 
 
-                cout << "**-- CALCULAR MEDICION TERAPEUTICA --**" << endl;
-                cout << "Valor real esperado por protocolo: ";
-                cin >> real;
-                cout << "Valor medido en dinamometro: ";
-                cin >> medido;
+- Funcion: nos ayuda a ver el comportamiento de rexuperacion del paciente.
+- Metodos y funcion:
+- Método grafico: representar gráficamente la evolución del paciente. 
+- Permite ver mayor fatiga en durante el tratamiento, menor fatiga entre el tratamiento, momento favorable de recuperacion.
+  
+<img width="619" height="426" alt="image" src="https://github.com/user-attachments/assets/f2408a81-b93e-41e2-bba7-437751051d31" />
 
-                // ======================================================
-                // Esta seccion mide la fuersa del paciente
-                // Se aplica el ERROR ABSOLUTO Y ERROR RELATIVO
-                // Funcion: Cuantificar la desviacion lineal y la relacion
-                // de precision respecto al valor real esperado.
-                // ======================================================
-                ea = fabs(real - medido);
-                er = (ea / real);
+- Funcion: nos ayuda a estimar que tan cerca es la evolucion real con respecto al comportamiento teorico esperado para un niño de su edad.
+- Metodos y funcion:
+- Error de formulación: comparar el comportamiento esperado según la edad con el progreso real del paciente.
+  - Resultado: permite ver que la operacion coincide prácticamente con la evolución clínica observada, ya que solo existe una diferencia del 3%. 
 
-                cout << "\n--- Resultados de Calibracion ---" << endl;
-                cout << "Desviacion Fisica Absoluta (Ea): " << ea << endl;
-                cout << "Proporcion de Variabilidad Relativa (Er): " << er << endl;
 
-                // ======================================================
-                // Aqui se aplica el ERROR PORCENTUAL
-                // Funcion: Expresar el error relativo en formato de base
-                // 100 para facilitar la lectura de mi terapeuta.
-                // ======================================================
-                double ePorcentual = er * 100;
-                cout << "Margen de Variabilidad Porcentual: " << ePorcentual << " %" << endl;
+<img width="601" height="313" alt="image" src="https://github.com/user-attachments/assets/ff61da60-866b-4c96-b2b7-0c158fcf1599" />
 
-                // ======================================================
-                // Aplicamos INCERTIDUMBRE
-                // Funcion: Establecer el umbral de tolerancia fisica
-                // de confianza del instrumento medico evaluado.
-                // ======================================================
-                double incertidumbre = ea / 2.0;
-                cout << "Margen de Incertidumbre Clinica (+/-): " << incertidumbre << endl;
-                break;
-            }
 
-            case 4: {
-                double a, b, c;
-                double tol = 0.01;
-                int iter = 0, max_iter = 10;
-                int cifras;
+## Case 6
+- Funcion: evalaa la precisión de los procesos de la clinica y optimiza la distribución de horas entre los especialistas.
+- Metodos y funcion:
+- Error propagado: calcular el error acumulado de los procesos administrativos.
+  - Resultado: permite ver que la clínica posee un margen de error muy bajo en sus operaciones.
 
-                cout << "**-- Agenda inteligente --**\n";
-                cout << "Ingrese bloque horario de apertura (ej. 1): ";
-                cin >> a;
-                cout << "Ingrese bloque horario de cierre (ej. 3): ";
-                cin >> b;
+- Eliminacion Gaussiana: ayuda al sistema que distribuye las horas de trabajo entre los especialistas.
+  - Resultado: Matriz triangular superior obtenida correctamente(Los datos fueron organizados correctamente para continuar con el cálculo).
 
-                if (f(a) * f(b) > 0) {
-                    cout << "\nConflicto operacional en los extremos seleccionados.\n";
-                    break;
-                }
+- Metodo Gauss Jordan: Ayuda a optimizar la asignación de horas del personal.
+  - Resultado: permite ver que los recursos de la clínica son suficientes para atender correctamente al paciente y mantener una planificación eficiente.
 
-                // ======================================================
-                // Aplicamos METODO DE BISECCION
-                // Funcion: Localizar un espacio optimo dividiendo de forma
-                // simetrica las horas libres en la agenda de la clinica.
-                // ======================================================
-                cout << "\n[Estrategia 1] Optimizacion Simetrica (Biseccion):\n";
-                double tpA = a, tpB = b;
-                while ((tpB - tpA) > tol && iter < max_iter) {
-                    c = (tpA + tpB) / 2.0;
-                    if (f(tpA) * f(c) < 0) tpB = c;
-                    else tpA = c;
-                    iter++;
-                }
-                cout << " -> Bloque sugerido por Biseccion: " << c << "\n";
 
-                // ======================================================
-                // Se aplica el metodo de la falsa posicion 
-                // Funcion: Encontrar el hueco en la agenda con mayor velocidad, 
-                // ponderando la disponibilidad por peso de importancia.
-                // ======================================================
-                cout << "\n[Estrategia 2] Optimizacion Dinamica (Falsa Posicion):\n";
-                tpA = a; tpB = b; iter = 0;
-                while (iter < max_iter) {
-                    if(fabs(f(tpB) - f(tpA)) < 0.000001) break;
-                    c = (tpA * f(tpB) - tpB * f(tpA)) / (f(tpB) - f(tpA));
-                    if (f(tpA) * f(c) < 0) tpB = c;
-                    else tpA = c;
-                    iter++;
-                }
-                cout << " -> Bloque sugerido por Falsa Posicion: " << c << "\n";
+<img width="605" height="275" alt="image" src="https://github.com/user-attachments/assets/74d9ff23-f2e9-4815-ae0c-96083ef4a98d" />
 
-                // ======================================================
-                // Aplico CIFRAS SIGNIFICATIVAS
-                // Funcion: Ajustar esteticamente el bloque horario final
-                // para que muestre solo los digitos legibles del reporte.
-                // ======================================================
-                cout << "\nCantidad de digitos significativos para la hora en agenda: ";
-                cin >> cifras;
-                double factor = pow(10, cifras - 1);
-                double horaFormateada = round(c * factor) / factor;
-                cout << " -> Horario definitivo asignado en tarjeta: " << horaFormateada << " hrs." << endl;
-                break;
-            }
 
-            case 5: {
-                int subOpcion;
-                cout << "**-- HISTORIAL E INTERPOLACION DE EVOLUCION --**" << endl;
-                cout << "1. Ver comportamiento de recuperacion estimado\n";
-                cout << "2. Evaluar fiabilidad del modelo teorico\n";
-                cout << "Seleccione: ";
-                cin >> subOpcion;
+## Case 7
+- Funcion: presentala informacion general del proyecto y los 14 metodos implemntados:
 
-                if(subOpcion == 1) {
-                    // ======================================================
-                    // Se aplica METODO GRAFICO
-                    // Funcion: Mapear la matriz de puntos en una tabla para
-                    // que el terapeuta observe visualmente los cambios de signo.
-                    // ======================================================
-                    cout << "\n--- TABLA DE CONTROL DE TENDENCIAS (Metodo Grafico) ---" << endl;
-                    cout << "Semana (x)\tRespuesta Estimada (f(x))" << endl;
-                    for(double x = -3; x <= 3; x += 1.5) {
-                        cout << x << "\t\t" << f(x) << endl;
-                    }
-                } 
-                else if(subOpcion == 2) {
-                    // ======================================================
-                    // Aqui aplico el ERROR DE FORMULACION
-                    // Funcion: Comparar la curva matematica predictiva ideal
-                    // contra el estado clinico real observado en el paciente.
-                    // ======================================================
-                    double modelo, realidad;
-                    cout << "\nIngrese porcentaje de exito predicho por el modelo: ";
-                    cin >> modelo;
-                    cout << "Ingrese porcentaje de exito real medido: ";
-                    cin >> realidad;
-                    cout << "\nDesviacion estructural del algoritmo: " << fabs(modelo - realidad) << " %" << endl;
-                }
-                break;
-            }
+1. Método de Punto Fijo
+2. Método de Newton-Raphson
+3. Método de la Secante
+4. Error Absoluto
+5. Error Relativo
+6. Error Porcentual
+7. Incertidumbre
+8. Método de Bisección
+9. Método de Falsa Posición
+10. Método Gráfico
+11. Error de Formulación
+12. Error Propagado
+13. Eliminación Gaussiana
+14. Método de Gauss-Jordan
 
-            case 6: {
-                cout << "**-- REPORTE OPERATIVO, COSTOS Y RECURSOS --**" << endl;
+<img width="570" height="331" alt="image" src="https://github.com/user-attachments/assets/0f52c12d-09ee-4115-9f11-673187b96fa6" />
 
-                // ======================================================
-                // Se aplica ERROR PROPAGADO
-                // Funcion: Determinar el error acumulado total en cuentas 
-                // debido a pequeñas variaciones instrumentales simultaneas.
-                // ======================================================
-                double er1 = 0.05, er2 = 0.03; 
-                double propagado = sqrt(pow(er1, 2) + pow(er2, 2));
-                cout << "[Control Interno] Tolerancia pobre Propagada: " << propagado << " %" << endl << endl;
 
-                // matrix 3x3 para administrar los datos:
-                double A[3][4] = {
-			    {2, 1, -1, 8},
-                {-3, -1, 2, -11},
-                {-2, 1, 2, -3}
-                };
+## Cierre del programa
+- Funcion: finaliza la ejecución del sistema y cierra la sesión del usuario.
+<img width="514" height="108" alt="Captura de pantalla 2026-07-19 132407" src="https://github.com/user-attachments/assets/a5ba7103-d22f-47a9-a451-eaf805cf7dd1" />
 
-                // ======================================================
-                // Se aplica Eliminacion GAUSSIANA
-                // Funcion: Resolver simultaneamente la cantidad de horas
-                // optimas asignadas a tres especialistas de la clinica.
-                // ======================================================
-                cout << "--- Resolviendo Distribucion Operativa (Eliminacion Gaussiana) ---" << endl;
-                for(int i = 0; i < 3; i++) {
-                    for(int j = i + 1; j < 3; j++) {
-                        double factor = A[j][i] / A[i][i];
-                        for(int k = i; k <= 3; k++) {
-                        A[j][k] -= factor * A[i][k];
-                        }
-                    }
-                }
-                cout << " -> Matriz reducida a forma triangular superior con exito." << endl;
+# Diagnostico Final del paciente
+## En base a los datos dados y obtenidos por el sistema
 
-                // ======================================================
-                // Se aplica GAUSS-JORDAN
-                // Funcion: Diagonalizar por completo la matriz para extraer
-                // el balance presupuestario limpio por terapeuta de forma directa.
-                // ======================================================
-                cout << "\n--- Optimizacion Directa de Costos (Gauss-Jordan) ---" << endl;
-                for(int i = 0; i < 3; i++) {
-                    double t = A[i][i];
-                    for(int k = i; k <= 3; k++) A[i][k] /= t; 
-                    for(int j = 0; j < 3; j++) {
-                        if(i != j) {
-                            double factor = A[j][i];
-                            for(int k = i; k <= 3; k++) {
-                            A[j][k] -= factor * A[i][k];
-                            }
-                        }
-                    }
-                }
-                
-                cout << " -> Horas Optimas Terapeuta Fisico A: " <<fabs(A[0][3]) << " hrs/sem." << endl;
-                cout << " -> Horas Optimas Terapeuta Motor B:  " <<fabs(A[1][3]) << " hrs/sem." << endl;
-                cout << " -> Horas Optimas Lenguaje Infantil C: " <<fabs(A[2][3]) << " hrs/sem." << endl;
-                break;
-            }
-            
-            case 7: {
-                cout << "**----------------------------------------------**" << endl;
-                cout << "              ACERCA DEL SISTEMA              " << endl;
-                cout << "**----------------------------------------------**" << endl;
-                cout << "Sistema Core de Inteligencia Clinica Integrada" << endl;
-                cout << "Clinica de Terapia Ocupacional Infantil" << endl;
-                cout << "Universidad de Panama" << endl;
-                cout << "Asignatura: Metodos Numericos" << endl;
-                cout << "**----------------------------------------------**" << endl;
-                cout << "Nota de Auditoria Academica: El software cuenta\n";
-                cout << "con las 14 integraciones de metodos numericos core\n";
-                cout << "solicitadas para la toma de decisiones organizacionales." << endl;
-                cout << "**----------------------------------------------**" << endl;
-                break;
-            }
 
-            case 0:
-                cout << "Cerrando sesion y guardando base de datos. Hasta luego." << endl;
-                break;
 
-            default:
-                cout << "Opcion no valida." << endl;
-        }
+Paciente: Roderick Gomez
 
-        if(opcion != 0){
-            cout << "\n\nPresione una tecla para regresar al menu principal...";
-            cin.ignore(); 
-            cin.get();
-        }
+Edad: 7 años
 
-    } while(opcion != 0);
+Diagnóstico inicial: Genu valgo (afectación en la rodilla).
 
-    return 0;
-}
+## Resultados obtenidos durante la evaluación
+### Se registró correctamente el paciente.
+- El análisis mediante Punto Fijo, Newton-Raphson y Secante mostró una recuperación estable y una evolución favorable del movimiento.
+- La medición terapéutica indicó una recuperación funcional del 92%, con un error absoluto de 8 unidades, un error relativo del 8% y una incertidumbre de ±4, lo que refleja una respuesta positiva al tratamiento.
+- La programación automática recomendó un horario óptimo y una alternativa adecuada para las sesiones terapéuticas.
+- El historial de progreso mostró una disminución de la fatiga durante la fase central del tratamiento y una evolución consistente con el peso del paciente.
+- El error de formulación del 3% evidenció que la evolución clínica observada es muy cercana a la esperada para un niño de 7 años.
+- El reporte operativo confirmó que la clínica cuenta con una distribución eficiente de recursos, asignando 2 horas al terapeuta físico, 3 horas al terapeuta motor y 1 hora al especialista en lenguaje, manteniendo un error operativo muy bajo (0.0583%).
+
+## Diagnóstico Final
+
+- Paciente pediátrico con genuvalgo en proceso de recuperación funcional favorable.
+
+Los resultados obtenidos indican que el paciente presenta una evolución positiva, con una recuperación cercana al 92% de la capacidad funcional esperada, un 3% de diferencia respecto al modelo teórico para su edad y una respuesta satisfactoria al tratamiento. Se observa mejoría en la estabilidad, fuerza y movilidad de los miembros inferiores, por lo que se recomienda continuar con el plan de terapia fisica y ocupacional para fortalecer la musculatura, corregir progresivamente la alineación de las rodillas y consolidar una marcha completamente funcional.
