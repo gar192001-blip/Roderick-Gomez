@@ -1,7 +1,7 @@
 # Roderick Gomez
 - Universidad de Panamá
 - Facultad de informática, electrónica y comunicación
-- CH- Sistema de Información
+- Asignatura: Metodos Numericos
 - I semestre 
 - Examen Semestral
 - Profesor: Angel Avila
